@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotboxx Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF6B00;
+    --orange-light: #FF8C3A;
+    --dark: #0D0D0D;
+    --card: #161616;
+    --card2: #1E1E1E;
+    --text: #F0EDE8;
+    --muted: #999;
+    --accent: #FFD700;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(160deg, #1a1a1a 0%, #0D0D0D 60%);
+    padding: 32px 20px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--orange);
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(255,107,0,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    letter-spacing: 4px;
+    color: var(--orange);
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(255,107,0,0.3);
+  }
+
+  .tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .contact-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card2);
+    border: 1px solid #2a2a2a;
+    border-radius: 100px;
+    padding: 8px 16px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .contact-pill span { font-size: 10px; }
+
+  /* HERO BADGES */
+  .hero-badges {
+    display: flex;
+    gap: 10px;
+    padding: 16px 20px;
+    background: var(--card);
+    border-bottom: 1px solid #222;
+  }
+
+  .hero-badge {
+    flex: 1;
+    background: linear-gradient(135deg, var(--orange) 0%, #cc5500 100%);
+    border-radius: 12px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+
+  .hero-badge .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    display: block;
+  }
+
+  .hero-badge .value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: #fff;
+    line-height: 1.1;
+    display: block;
+  }
+
+  /* NAV TABS */
+  .nav-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 6px;
+    padding: 12px 20px;
+    background: var(--dark);
+    border-bottom: 1px solid #1a1a1a;
+    scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-tabs::-webkit-scrollbar { display: none; }
+
+  .tab {
+    flex-shrink: 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 100px;
+    border: 1px solid #2a2a2a;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .tab.active, .tab:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #fff;
+  }
+
+  /* SECTIONS */
+  .section { display: none; padding: 0 0 80px; }
+  .section.active { display: block; }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 20px 12px;
+  }
+
+  .section-icon {
+    width: 36px; height: 36px;
+    background: var(--orange);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--text);
+  }
+
+  /* MENU ITEMS */
+  .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid #1a1a1a;
+    transition: background 0.15s;
+  }
+
+  .menu-item:hover { background: #141414; }
+
+  .item-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .item-sub {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    display: block;
+    margin-top: 1px;
+  }
+
+  .item-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--orange);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    margin-left: 12px;
+  }
+
+  /* UPGRADE NOTE */
+  .upgrade-note {
+    margin: 8px 20px 4px;
+    padding: 10px 14px;
+    background: #1a1a1a;
+    border-left: 3px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .upgrade-note strong { color: var(--orange); }
+
+  /* COMBO CARDS */
+  .combos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 20px;
+  }
+
+  .combo-card {
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid #252525;
+    overflow: hidden;
+  }
+
+  .combo-header {
+    background: linear-gradient(135deg, #1E1E1E, #252525);
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .combo-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--text);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .combo-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--orange);
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .combo-items {
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .combo-item {
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .combo-item::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--orange);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* HERO COMBOS */
+  .hero-combo {
+    margin: 8px 20px 4px;
+    background: linear-gradient(135deg, #1E1200, #1a0d00);
+    border: 1px solid var(--orange);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-combo::after {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(255,107,0,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-combo-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--orange);
+  }
+
+  .hero-combo-desc {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    margin: 4px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .hero-combo-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--accent);
+    letter-spacing: 2px;
+  }
+
+  /* MOMOS - special grid */
+  .momo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 8px 20px;
+  }
+
+  .momo-card {
+    background: var(--card);
+    border: 1px solid #252525;
+    border-radius: 12px;
+    padding: 14px;
+  }
+
+  .momo-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .momo-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--orange);
+  }
+
+  /* REFRESHMENTS */
+  .refresh-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0 20px;
+  }
+
+  .refresh-item {
+    padding: 12px 4px;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .refresh-item:nth-child(odd) { padding-right: 20px; border-right: 1px solid #1a1a1a; }
+
+  .refresh-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .refresh-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    color: var(--orange);
+  }
+
+  /* BBQ sizes */
+  .bbq-sizes {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* FOOTER */
+  .footer {
+    position: fixed;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background: var(--card);
+    border-top: 1px solid #2a2a2a;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 200;
+  }
+
+  .footer a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--orange);
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  .footer-dot {
+    width: 4px; height: 4px;
+    background: #3a3a3a;
+    border-radius: 50%;
+  }
+
+  .footer-loc {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* DIVIDER */
+  .sub-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 4px 20px 8px;
+  }
+
+  /* Fade in animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section.active .menu-item,
+  .section.active .combo-card,
+  .section.active .momo-card,
+  .section.active .hero-combo {
+    animation: fadeUp 0.25s ease both;
+  }
+
+  /* Stagger */
+  .menu-item:nth-child(1) { animation-delay: 0.03s }
+  .menu-item:nth-child(2) { animation-delay: 0.06s }
+  .menu-item:nth-child(3) { animation-delay: 0.09s }
+  .menu-item:nth-child(4) { animation-delay: 0.12s }
+  .menu-item:nth-child(5) { animation-delay: 0.15s }
+  .menu-item:nth-child(6) { animation-delay: 0.18s }
+  .menu-item:nth-child(7) { animation-delay: 0.21s }
+  .menu-item:nth-child(8) { animation-delay: 0.24s }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">HOTBOXX</div>
+  <div class="tagline">Smoked. Fried. Certified.</div>
+  <div class="contact-pill">
+    <span>📞</span> +91 88765 20650
+  </div>
+</div>
+
+<!-- HERO BADGES -->
+<div class="hero-badges">
+  <div class="hero-badge">
+    <span class="label">Everyday Special</span>
+    <span class="value">Chicken<br>Biryani</span>
+    <span class="label" style="margin-top:4px; font-size:14px; color:var(--accent); font-family:'Bebas Neue',sans-serif; letter-spacing:1px;">Just ₹99</span>
+  </div>
+  <div class="hero-badge" style="background:linear-gradient(135deg,#1e1e1e,#2a2a2a); border:1px solid #333;">
+    <span class="label">Hot Combos</span>
+    <span class="value" style="color:var(--orange)">Starts</span>
+    <span class="label" style="margin-top:4px; font-size:14px; color:var(--accent); font-family:'Bebas Neue',sans-serif; letter-spacing:1px;">₹110</span>
+  </div>
+</div>
+
+<!-- NAV TABS -->
+<div class="nav-tabs">
+  <button class="tab active" onclick="showSection('fried')">🍗 Fried</button>
+  <button class="tab" onclick="showSection('barbeque')">🔥 BBQ</button>
+  <button class="tab" onclick="showSection('rice')">🍚 Rice & Noodles</button>
+  <button class="tab" onclick="showSection('gravy')">🍛 Gravy</button>
+  <button class="tab" onclick="showSection('rolls')">🌯 Rolls</button>
+  <button class="tab" onclick="showSection('momos')">🥟 Momos</button>
+  <button class="tab" onclick="showSection('combos')">🎁 Combos</button>
+  <button class="tab" onclick="showSection('drinks')">🥤 Drinks</button>
+</div>
+
+<!-- FRIED FAVOURITES -->
+<div id="fried" class="section active">
+  <div class="section-header">
+    <div class="section-icon">🍗</div>
+    <div class="section-title">Fried Favourites</div>
+  </div>
+
+  <div class="menu-item">
+    <div><div class="item-name">Whole Fried Chicken</div></div>
+    <div class="item-price">₹450</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Pakoda</div><span class="item-sub">6 pcs / 12 pcs</span></div>
+    <div class="item-price">₹130 / ₹220</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Hot Wings</div><span class="item-sub">4 pcs</span></div>
+    <div class="item-price">₹99</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Peri-Peri Wings</div><span class="item-sub">4 pcs</span></div>
+    <div class="item-price">₹99</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Drums of Heaven</div><span class="item-sub">3 pcs</span></div>
+    <div class="item-price">₹110</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Popcorn</div><span class="item-sub">Regular</span></div>
+    <div class="item-price">₹120</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Fish Finger</div><span class="item-sub">4 pcs</span></div>
+    <div class="item-price">₹139</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Strips</div><span class="item-sub">4 pcs</span></div>
+    <div class="item-price">₹199</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Gold Coin</div><span class="item-sub">6 pcs</span></div>
+    <div class="item-price">₹200</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">French Fries</div><span class="item-sub">Single / Double</span></div>
+    <div class="item-price">₹59 / ₹110</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Crispy Chilli Potatoes</div><span class="item-sub">Single / Double</span></div>
+    <div class="item-price">₹69 / ₹119</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Spring Rolls</div><span class="item-sub">4 pcs</span></div>
+    <div class="item-price">₹99</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Nuggets</div><span class="item-sub">4 pcs</span></div>
+    <div class="item-price">₹129</div>
+  </div>
+</div>
+
+<!-- BBQ & GRILL -->
+<div id="barbeque" class="section">
+  <div class="section-header">
+    <div class="section-icon">🔥</div>
+    <div class="section-title">Barbeque & Grill</div>
+  </div>
+
+  <div class="menu-item">
+    <div>
+      <div class="item-name">BBQ Chicken</div>
+      <span class="item-sub">Quarter / Half / Full</span>
+    </div>
+    <div class="item-price">₹120 / ₹240 / ₹450</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Afghani Tikka</div></div>
+    <div class="item-price">₹139</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Tikka</div></div>
+    <div class="item-price">₹129</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Hariyali</div></div>
+    <div class="item-price">₹119</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Reshmi Kebab</div></div>
+    <div class="item-price">₹129</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Paneer Tikka</div><span class="item-sub">4 pcs</span></div>
+    <div class="item-price">₹110</div>
+  </div>
+</div>
+
+<!-- RICE & NOODLES -->
+<div id="rice" class="section">
+  <div class="section-header">
+    <div class="section-icon">🍚</div>
+    <div class="section-title">Rice & Noodles</div>
+  </div>
+
+  <div class="sub-header">Rice — Half / Full</div>
+  <div class="menu-item">
+    <div><div class="item-name">Veg Fried Rice</div></div>
+    <div class="item-price">₹59 / ₹99</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Egg Fried Rice</div></div>
+    <div class="item-price">₹69 / ₹110</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Fried Rice</div></div>
+    <div class="item-price">₹79 / ₹119</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Egg Chicken Fried Rice</div></div>
+    <div class="item-price">₹89 / ₹129</div>
+  </div>
+
+  <div class="sub-header" style="margin-top:8px;">Noodles — Half / Full</div>
+  <div class="menu-item">
+    <div><div class="item-name">Veg Fried Noodles</div></div>
+    <div class="item-price">₹59 / ₹99</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Egg Fried Noodles</div></div>
+    <div class="item-price">₹69 / ₹110</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Fried Noodles</div></div>
+    <div class="item-price">₹79 / ₹119</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Egg Chicken Fried Noodles</div></div>
+    <div class="item-price">₹89 / ₹129</div>
+  </div>
+
+  <div class="upgrade-note">
+    ✦ <strong>Upgrade any rice or noodles</strong> to Butter Garlic / Chilli Garlic / Schezwan — add just <strong>+₹10</strong>
+  </div>
+</div>
+
+<!-- GRAVY -->
+<div id="gravy" class="section">
+  <div class="section-header">
+    <div class="section-icon">🍛</div>
+    <div class="section-title">Gravy Dishes</div>
+  </div>
+
+  <div class="menu-item">
+    <div><div class="item-name">Chilli Chicken</div><span class="item-sub">Dry / Gravy — 6 pcs</span></div>
+    <div class="item-price">₹139</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Manchurian</div><span class="item-sub">6 pcs</span></div>
+    <div class="item-price">₹139</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Schezwan Chicken</div><span class="item-sub">6 pcs</span></div>
+    <div class="item-price">₹139</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chilli Fish</div><span class="item-sub">Dry / Gravy — 6 pcs</span></div>
+    <div class="item-price">₹179</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Veg Manchurian</div></div>
+    <div class="item-price">₹79</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Bharta</div></div>
+    <div class="item-price">₹129</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Kosha</div><span class="item-sub">3 pcs</span></div>
+    <div class="item-price">₹129</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken SC</div><span class="item-sub">3 pcs</span></div>
+    <div class="item-price">₹119</div>
+  </div>
+</div>
+
+<!-- ROLLS -->
+<div id="rolls" class="section">
+  <div class="section-header">
+    <div class="section-icon">🌯</div>
+    <div class="section-title">Rolls & Wraps</div>
+  </div>
+
+  <div class="menu-item">
+    <div><div class="item-name">Egg Roll</div><span class="item-sub">Single / Double</span></div>
+    <div class="item-price">₹59 / ₹69</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Chicken Roll</div></div>
+    <div class="item-price">₹79</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Egg Chicken Roll</div></div>
+    <div class="item-price">₹99</div>
+  </div>
+  <div class="menu-item">
+    <div><div class="item-name">Mughai Parota</div><span class="item-sub">Egg / Chicken</span></div>
+    <div class="item-price">₹80 / ₹100</div>
+  </div>
+</div>
+
+<!-- MOMOS -->
+<div id="momos" class="section">
+  <div class="section-header">
+    <div class="section-icon">🥟</div>
+    <div class="section-title">Momos</div>
+  </div>
+
+  <div class="momo-grid">
+    <div class="momo-card">
+      <div class="momo-name">Chicken Steamed Momos</div>
+      <div class="momo-price">₹50</div>
+    </div>
+    <div class="momo-card">
+      <div class="momo-name">Fried Chicken Momos</div>
+      <div class="momo-price">₹70</div>
+    </div>
+    <div class="momo-card">
+      <div class="momo-name">Pan-Fried Chicken Momos</div>
+      <div class="momo-price">₹80</div>
+    </div>
+    <div class="momo-card">
+      <div class="momo-name">Chilli Fried Chicken Momos</div>
+      <div class="momo-price">₹100</div>
+    </div>
+    <div class="momo-card" style="grid-column: 1 / -1;">
+      <div class="momo-name">Butter Tossed Chicken Momos</div>
+      <div class="momo-price">₹100</div>
+    </div>
+  </div>
+</div>
+
+<!-- COMBOS -->
+<div id="combos" class="section">
+  <div class="section-header">
+    <div class="section-icon">🎁</div>
+    <div class="section-title">Hot Combos</div>
+  </div>
+
+  <!-- Hero combos -->
+  <div style="display:flex; gap:10px; padding: 0 20px 8px;">
+    <div class="hero-combo" style="flex:1; margin:0;">
+      <div class="hero-combo-name">House Special</div>
+      <div class="hero-combo-desc">Gold Coin (6 pcs) + Fries + Drink</div>
+      <div class="hero-combo-price">₹229</div>
+    </div>
+    <div class="hero-combo" style="flex:1; margin:0;">
+      <div class="hero-combo-name">Fiery Wings</div>
+      <div class="hero-combo-desc">Hot Wings (6 pcs) + Fries + Drink</div>
+      <div class="hero-combo-price">₹169</div>
+    </div>
+  </div>
+  <div class="hero-combo" style="margin-bottom:8px;">
+    <div class="hero-combo-name">Turf & Turf</div>
+    <div class="hero-combo-desc">Chicken Popcorn + Fries + Drink</div>
+    <div class="hero-combo-price">₹169</div>
+  </div>
+
+  <div class="combos-grid">
+    <div class="combo-card">
+      <div class="combo-header">
+        <div class="combo-name">Hotboxx Classic</div>
+        <div class="combo-price">₹169</div>
+      </div>
+      <div class="combo-items">
+        <div class="combo-item">Chicken Tikka (4 pcs)</div>
+        <div class="combo-item">French Fries (Peri-Peri / Reg)</div>
+        <div class="combo-item">Soft Drink</div>
+      </div>
+    </div>
+
+    <div class="combo-card">
+      <div class="combo-header">
+        <div class="combo-name">Fried Feast Combo</div>
+        <div class="combo-price">₹219</div>
+      </div>
+      <div class="combo-items">
+        <div class="combo-item">Chicken Fry (2 pcs)</div>
+        <div class="combo-item">Chicken Pakoda (4 pcs)</div>
+        <div class="combo-item">French Fries (Peri-Peri / Reg)</div>
+        <div class="combo-item">Soft Drink</div>
+      </div>
+    </div>
+
+    <div class="combo-card">
+      <div class="combo-header">
+        <div class="combo-name">Momo Meal Combo</div>
+        <div class="combo-price">₹119</div>
+      </div>
+      <div class="combo-items">
+        <div class="combo-item">Fried Momo (6 pcs)</div>
+        <div class="combo-item">French Fries (Peri-Peri / Reg)</div>
+        <div class="combo-item">Soft Drink</div>
+      </div>
+    </div>
+
+    <div class="combo-card">
+      <div class="combo-header">
+        <div class="combo-name">Rice & Fire Combo</div>
+        <div class="combo-price">₹169</div>
+      </div>
+      <div class="combo-items">
+        <div class="combo-item">Veg Fried Rice</div>
+        <div class="combo-item">Chilli Chicken (3 pcs)</div>
+        <div class="combo-item">Soft Drink</div>
+      </div>
+    </div>
+
+    <div class="combo-card">
+      <div class="combo-header">
+        <div class="combo-name">Street Wok Combo</div>
+        <div class="combo-price">₹169</div>
+      </div>
+      <div class="combo-items">
+        <div class="combo-item">Veg Noodles</div>
+        <div class="combo-item">Chicken Manchurian (3 pcs)</div>
+        <div class="combo-item">Soft Drink</div>
+      </div>
+    </div>
+
+    <div class="combo-card">
+      <div class="combo-header">
+        <div class="combo-name">Roll & Sip Combo</div>
+        <div class="combo-price">₹139</div>
+      </div>
+      <div class="combo-items">
+        <div class="combo-item">1 × Chicken Roll</div>
+        <div class="combo-item">French Fries (Peri-Peri / Reg)</div>
+        <div class="combo-item">Soft Drink</div>
+      </div>
+    </div>
+
+    <div class="combo-card">
+      <div class="combo-header">
+        <div class="combo-name">Kosha Plate Combo</div>
+        <div class="combo-price">₹129</div>
+      </div>
+      <div class="combo-items">
+        <div class="combo-item">Veg Fried Rice</div>
+        <div class="combo-item">Chicken Kosha (2 pcs)</div>
+        <div class="combo-item">Soft Drink</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRINKS -->
+<div id="drinks" class="section">
+  <div class="section-header">
+    <div class="section-icon">🥤</div>
+    <div class="section-title">Refreshments</div>
+  </div>
+
+  <div class="refresh-grid">
+    <div class="refresh-item">
+      <div class="refresh-name">Hangover Soda</div>
+      <div class="refresh-price">₹49</div>
+    </div>
+    <div class="refresh-item">
+      <div class="refresh-name">Masala Soda</div>
+      <div class="refresh-price">₹49</div>
+    </div>
+    <div class="refresh-item">
+      <div class="refresh-name">Mojito</div>
+      <div class="refresh-price">₹49</div>
+    </div>
+    <div class="refresh-item">
+      <div class="refresh-name">Coffee</div>
+      <div class="refresh-price">₹20</div>
+    </div>
+    <div class="refresh-item">
+      <div class="refresh-name">Lemon Tea</div>
+      <div class="refresh-price">₹10</div>
+    </div>
+    <div class="refresh-item">
+      <div class="refresh-name">Tea</div>
+      <div class="refresh-price">₹15</div>
+    </div>
+    <div class="refresh-item">
+      <div class="refresh-name">Coke / Sprite</div>
+      <div class="refresh-price">MRP</div>
+    </div>
+    <div class="refresh-item">
+      <div class="refresh-name">Packaged Water</div>
+      <div class="refresh-price">MRP</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <a href="tel:+918876520650">📞 +91 88765 20650</a>
+  <div class="footer-dot"></div>
+  <span class="footer-loc">📍 Rangirkhari Point, Silchar</span>
+</div>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
