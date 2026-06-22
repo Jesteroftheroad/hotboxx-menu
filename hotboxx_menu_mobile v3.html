@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Hotboxx — Smoked. Fried. Certified.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+:root {
+  --bg: #0C0B09;
+  --surface: #141310;
+  --surface2: #1C1A17;
+  --surface3: #252320;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --orange: #F4610A;
+  --orange2: #FF7A2F;
+  --amber: #F5A623;
+  --cream: #F0EAD6;
+  --cream2: #C8BFA8;
+  --muted: #7A7060;
+  --green: #4CAF50;
+  --text: #EDE8DC;
+  --r: 12px;
+  --r2: 18px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+.hdr {
+  position: relative;
+  padding: 48px 24px 32px;
+  text-align: center;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.hdr-glow {
+  position: absolute;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(244,97,10,0.18) 0%, transparent 70%);
+  top: -60px; left: 50%; transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.hdr-corner {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 120px; height: 120px;
+  background: radial-gradient(circle at bottom right, rgba(245,166,35,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.logo-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--orange);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.logo-badge {
+  position: absolute;
+  top: 2px; right: -36px;
+  background: var(--amber);
+  color: #1a0f00;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.tagline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.hdr-pills {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  padding: 7px 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cream2);
+  text-decoration: none;
+}
+
+.pill svg { flex-shrink: 0; }
+
+.pill-orange { border-color: rgba(244,97,10,0.4); color: var(--orange2); }
+
+/* ── HERO STRIP ── */
+.hero-strip {
+  display: flex;
+  gap: 1px;
+  background: var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-tile {
+  flex: 1;
+  padding: 18px 14px 16px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.hero-tile-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: 'Space Grotesk', sans-serif;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.hero-tile-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.hero-tile-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.hero-tile-divider {
+  width: 1px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* ── DELIVERY BAR ── */
+.delivery-bar {
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.delivery-dot {
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.delivery-bar strong { color: var(--cream2); font-weight: 500; }
+.delivery-sep { margin: 0 6px; color: var(--border2); }
+
+/* ── NAV ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-scroll {
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  padding: 10px 16px;
+  scrollbar-width: none;
+}
+.nav-scroll::-webkit-scrollbar { display: none; }
+
+.nav-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 13px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  background: none;
+  color: var(--muted);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+.nav-btn:hover { color: var(--cream2); background: var(--surface2); }
+
+.nav-btn.on {
+  background: var(--orange);
+  color: #fff;
+  border-color: var(--orange);
+}
+
+.nav-btn svg { flex-shrink: 0; }
+
+/* ── SECTIONS ── */
+.sec { display: none; padding-bottom: 100px; }
+.sec.on { display: block; }
+
+/* ── SECTION HEADER ── */
+.sec-hdr {
+  padding: 28px 24px 16px;
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+.sec-icon {
+  width: 42px; height: 42px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.sec-icon svg { width: 20px; height: 20px; stroke: var(--orange); }
+
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1;
+}
+
+.sec-count {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: 'Space Grotesk', sans-serif;
+  margin-bottom: 2px;
+}
+
+/* ── SUB-LABEL ── */
+.sub-lbl {
+  padding: 14px 24px 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+.sub-lbl:first-of-type { border-top: none; }
+
+/* ── MENU ROW ── */
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  transition: background 0.12s;
+}
+.row:hover { background: var(--surface); }
+.row:last-of-type { border-bottom: none; }
+
+.row-left { flex: 1; min-width: 0; }
+
+.row-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1.3;
+}
+
+.row-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+  font-weight: 300;
+}
+
+.row-note {
+  font-size: 11px;
+  color: var(--orange2);
+  margin-top: 3px;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.row-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--orange);
+  white-space: nowrap;
+  text-align: right;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+
+.row-price.mrp {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+  padding: 3px 8px;
+  background: var(--surface3);
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* ── UPGRADE BANNER ── */
+.upgrade {
+  margin: 4px 24px 12px;
+  padding: 12px 16px;
+  background: var(--surface2);
+  border-left: 2px solid var(--orange);
+  border-radius: 0 var(--r) var(--r) 0;
+}
+
+.upgrade-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--orange2);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.upgrade-body {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.upgrade-body strong { color: var(--cream2); font-weight: 500; }
+
+/* ── BIRYANI PROMO CARD ── */
+.biryani-promo {
+  margin: 0 24px 4px;
+  background: var(--surface2);
+  border: 1px solid rgba(244,97,10,0.3);
+  border-radius: var(--r2);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.biryani-promo::before {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 100px; height: 100px;
+  background: radial-gradient(circle, rgba(244,97,10,0.15) 0%, transparent 70%);
+}
+
+.bp-lbl {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange2);
+  font-family: 'Space Grotesk', sans-serif;
+  margin-bottom: 4px;
+}
+
+.bp-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.1;
+}
+
+.bp-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+.bp-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1;
+}
+
+/* ── ADD-ONS GRID ── */
+.addons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  margin: 4px 24px 16px;
+  border-radius: var(--r);
+  overflow: hidden;
+}
+
+.addon {
+  background: var(--surface);
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addon-name {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--cream2);
+}
+
+.addon-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+/* ── MOMO GRID ── */
+.momo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 4px 24px 16px;
+}
+
+.momo-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--r2);
+  padding: 18px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.momo-card.wide { grid-column: 1 / -1; }
+
+.momo-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 60px; height: 60px;
+  background: radial-gradient(circle at bottom right, rgba(244,97,10,0.08) 0%, transparent 70%);
+}
+
+.momo-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cream2);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.momo-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+/* ── COMBO CARDS ── */
+.combo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 24px 16px;
+}
+
+.combo-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--r2);
+  overflow: hidden;
+}
+
+.combo-head {
+  padding: 16px 18px 14px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.combo-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+.combo-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+
+.combo-body {
+  padding: 12px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.combo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.combo-dot {
+  width: 5px; height: 5px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+/* ── HERO SELLER CARDS ── */
+.seller-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 24px 12px;
+}
+
+.seller-row {
+  display: flex;
+  gap: 10px;
+}
+
+.seller-card {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid rgba(244,97,10,0.25);
+  border-radius: var(--r2);
+  padding: 18px 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.seller-card.full { width: 100%; }
+
+.seller-card::before {
+  content: '';
+  position: absolute;
+  top: -20px; left: 50%; transform: translateX(-50%);
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, rgba(244,97,10,0.12) 0%, transparent 70%);
+}
+
+.seller-badge {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid rgba(245,166,35,0.35);
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-bottom: 8px;
+}
+
+.seller-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.seller-desc {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.seller-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+/* ── DRINKS ── */
+.drinks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  margin: 4px 0 0;
+  overflow: hidden;
+}
+
+.drink-item {
+  background: var(--surface);
+  padding: 13px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.drink-name {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--cream2);
+}
+
+.drink-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--orange);
+  white-space: nowrap;
+}
+
+.drink-price.mrp {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  background: var(--surface3);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+/* ── FOOTER ── */
+.footer {
+  position: fixed;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 100%; max-width: 430px;
+  background: rgba(12,11,9,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border2);
+  padding: 12px 24px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  z-index: 100;
+}
+
+.footer-call {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.footer-icon {
+  width: 34px; height: 34px;
+  background: var(--orange);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.footer-icon svg { stroke: #fff; }
+
+.footer-text-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.footer-text-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cream);
+}
+
+.footer-loc {
+  text-align: right;
+}
+
+.footer-loc-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.footer-loc-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cream2);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sec.on > * {
+  animation: fadeUp 0.2s ease both;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-glow"></div>
+  <div class="hdr-corner"></div>
+  <div class="logo-wrap">
+    <div class="logo">Hotboxx</div>
+    <div class="logo-badge">New Menu</div>
+  </div>
+  <div class="tagline">Smoked &nbsp;·&nbsp; Fried &nbsp;·&nbsp; Certified</div>
+  <div class="hdr-pills">
+    <a class="pill pill-orange" href="tel:+918876520650">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.05 1.1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16z"/></svg>
+      +91 88765 20650
+    </a>
+    <div class="pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      Open Daily
+    </div>
+  </div>
+</header>
+
+<!-- HERO STRIP -->
+<div class="hero-strip">
+  <div class="hero-tile">
+    <span class="hero-tile-label">⭐ Daily Special</span>
+    <div class="hero-tile-name">Chicken<br>Biryani</div>
+    <div class="hero-tile-price">₹109</div>
+  </div>
+  <div class="hero-tile-divider"></div>
+  <div class="hero-tile">
+    <span class="hero-tile-label">🔥 Hot Combos</span>
+    <div class="hero-tile-name">Starts<br>from</div>
+    <div class="hero-tile-price">₹129</div>
+  </div>
+</div>
+
+<!-- DELIVERY BAR -->
+<div class="delivery-bar">
+  <div class="delivery-dot"></div>
+  <strong>Swiggy &amp; Zomato</strong>
+  <span class="delivery-sep">·</span>
+  Dine-In &amp; Takeaway
+  <span class="delivery-sep">·</span>
+  Rangirkhari Point
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-scroll">
+    <button class="nav-btn on" onclick="show('fried',this)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+      Fried
+    </button>
+    <button class="nav-btn" onclick="show('bbq',this)">🔥 BBQ &amp; Grill</button>
+    <button class="nav-btn" onclick="show('biryani',this)">🍲 Biryani</button>
+    <button class="nav-btn" onclick="show('gravy',this)">🍛 Gravy</button>
+    <button class="nav-btn" onclick="show('rice',this)">🥢 Rice &amp; Noodles</button>
+    <button class="nav-btn" onclick="show('rolls',this)">🌯 Rolls</button>
+    <button class="nav-btn" onclick="show('momos',this)">🥟 Dumplings</button>
+    <button class="nav-btn" onclick="show('tandoor',this)">🫓 Tandoor</button>
+    <button class="nav-btn" onclick="show('combos',this)">🎁 Combos</button>
+    <button class="nav-btn" onclick="show('drinks',this)">🥤 Drinks</button>
+  </div>
+</nav>
+
+<!-- ═══ FRIED ═══ -->
+<section id="fried" class="sec on">
+  <div class="sec-hdr">
+    <div class="sec-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 11c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8z"/><path d="M12 8v4l2.5 2.5"/></svg>
+    </div>
+    <div>
+      <div class="sec-count">13 items</div>
+      <div class="sec-title">Fried Favourites</div>
+    </div>
+  </div>
+
+  <div class="row"><div class="row-left"><div class="row-name">Whole Fried Chicken</div></div><div class="row-price">₹460</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Pakoda</div><div class="row-sub">6 pcs / 12 pcs</div></div><div class="row-price">₹140 / ₹230</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Hot Wings</div><div class="row-sub">4 pcs</div></div><div class="row-price">₹110</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Peri-Peri Wings</div><div class="row-sub">4 pcs</div></div><div class="row-price">₹110</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Drums of Heaven</div><div class="row-sub">3 pcs</div></div><div class="row-price">₹120</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Popcorn</div><div class="row-sub">Regular</div></div><div class="row-price">₹130</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Fish Finger</div><div class="row-sub">4 pcs</div></div><div class="row-price">₹149</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Strips</div><div class="row-sub">4 pcs</div></div><div class="row-price">₹199</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Gold Coin</div><div class="row-sub">6 pcs</div></div><div class="row-price">₹200</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">French Fries</div><div class="row-sub">Single / Double</div></div><div class="row-price">₹59 / ₹110</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Crispy Chilli Potatoes</div><div class="row-sub">Single / Double</div></div><div class="row-price">₹69 / ₹119</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Spring Rolls</div><div class="row-sub">4 pcs</div></div><div class="row-price">₹99</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Nuggets</div><div class="row-sub">4 pcs</div></div><div class="row-price">₹129</div></div>
+</section>
+
+<!-- ═══ BBQ ═══ -->
+<section id="bbq" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <div>
+      <div class="sec-count">6 items</div>
+      <div class="sec-title">Barbeque &amp; Grill</div>
+    </div>
+  </div>
+  <div class="row"><div class="row-left"><div class="row-name">BBQ Chicken</div><div class="row-sub">Quarter / Half / Full</div></div><div class="row-price">₹130 / ₹250 / ₹460</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Afghani Tikka</div></div><div class="row-price">₹149</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Tikka</div></div><div class="row-price">₹139</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Hariyali</div></div><div class="row-price">₹129</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Reshmi Kebab</div></div><div class="row-price">₹139</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Paneer Tikka</div><div class="row-sub">4 pcs</div></div><div class="row-price">₹120</div></div>
+</section>
+
+<!-- ═══ BIRYANI ═══ -->
+<section id="biryani" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+    </div>
+    <div>
+      <div class="sec-count">5 items + add-ons</div>
+      <div class="sec-title">Biryani</div>
+    </div>
+  </div>
+
+  <div class="biryani-promo">
+    <div>
+      <div class="bp-lbl">⭐ Everyday Special</div>
+      <div class="bp-name">Chicken Biryani</div>
+      <div class="bp-sub">Our signature — served daily</div>
+    </div>
+    <div class="bp-price">₹109</div>
+  </div>
+
+  <div style="height:12px"></div>
+  <div class="row"><div class="row-left"><div class="row-name">Aloo Biryani</div></div><div class="row-price">₹60</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Egg Biryani</div></div><div class="row-price">₹80</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Raju Gari Chicken Biryani</div></div><div class="row-price">₹120</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Mutton Biryani</div><div class="row-note">Ask staff for today's price</div></div><div class="row-price mrp">MRP</div></div>
+
+  <div class="sub-lbl" style="margin-top:8px">Add-Ons</div>
+  <div class="addons-grid">
+    <div class="addon"><div class="addon-name">Extra Aloo</div><div class="addon-price">₹8</div></div>
+    <div class="addon"><div class="addon-name">Extra Egg</div><div class="addon-price">₹20</div></div>
+    <div class="addon"><div class="addon-name">Extra Chicken Piece</div><div class="addon-price">₹49</div></div>
+    <div class="addon"><div class="addon-name">Extra Mutton Piece</div><div class="addon-price" style="font-size:12px;color:var(--muted);font-family:'Space Grotesk',sans-serif;font-weight:400">MRP</div></div>
+  </div>
+</section>
+
+<!-- ═══ GRAVY ═══ -->
+<section id="gravy" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 11V6l7 7-7 7v-5H3v-4h6z"/></svg>
+    </div>
+    <div>
+      <div class="sec-count">12 items</div>
+      <div class="sec-title">Gravy Dishes</div>
+    </div>
+  </div>
+
+  <div class="sub-lbl">Chicken &amp; Fish</div>
+  <div class="row"><div class="row-left"><div class="row-name">Chilli Chicken</div><div class="row-sub">Dry / Gravy — 6 pcs</div></div><div class="row-price">₹139</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Manchurian</div><div class="row-sub">6 pcs</div></div><div class="row-price">₹139</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Schezwan Chicken</div><div class="row-sub">6 pcs</div></div><div class="row-price">₹139</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chilli Fish</div><div class="row-sub">Dry / Gravy — 6 pcs</div></div><div class="row-price">₹189</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Bharta</div><div class="row-sub">Half / Full</div></div><div class="row-price">₹160 / ₹310</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Kosha</div><div class="row-sub">3 pcs / 6 pcs</div></div><div class="row-price">₹150 / ₹250</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Handi</div><div class="row-sub">Half / Full</div></div><div class="row-price">₹180 / ₹300</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Butter Masala</div><div class="row-sub">Half / Full</div></div><div class="row-price">₹200 / ₹350</div></div>
+
+  <div class="sub-lbl">Paneer &amp; Veg</div>
+  <div class="row"><div class="row-left"><div class="row-name">Veg Manchurian</div></div><div class="row-price">₹79</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Paneer Butter Masala</div><div class="row-sub">Half / Full</div></div><div class="row-price">₹150 / ₹280</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Paneer Handi</div><div class="row-sub">Half / Full</div></div><div class="row-price">₹170 / ₹300</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Paneer Bharta</div><div class="row-sub">Half / Full</div></div><div class="row-price">₹120 / ₹220</div></div>
+</section>
+
+<!-- ═══ RICE & NOODLES ═══ -->
+<section id="rice" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><line x1="8" y1="6" x2="8" y2="21"/><path d="M20 7H4l2-4h12l2 4z"/><line x1="12" y1="6" x2="12" y2="21"/></svg>
+    </div>
+    <div>
+      <div class="sec-count">8 items</div>
+      <div class="sec-title">Rice &amp; Noodles</div>
+    </div>
+  </div>
+
+  <div class="sub-lbl">Fried Rice — Half / Full</div>
+  <div class="row"><div class="row-left"><div class="row-name">Veg Fried Rice</div></div><div class="row-price">₹69 / ₹110</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Egg Fried Rice</div></div><div class="row-price">₹79 / ₹120</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Fried Rice</div></div><div class="row-price">₹89 / ₹130</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Egg Chicken Fried Rice</div></div><div class="row-price">₹99 / ₹140</div></div>
+
+  <div class="sub-lbl">Fried Noodles — Half / Full</div>
+  <div class="row"><div class="row-left"><div class="row-name">Veg Fried Noodles</div></div><div class="row-price">₹69 / ₹110</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Egg Fried Noodles</div></div><div class="row-price">₹79 / ₹120</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Fried Noodles</div></div><div class="row-price">₹89 / ₹130</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Egg Chicken Fried Noodles</div></div><div class="row-price">₹99 / ₹140</div></div>
+
+  <div class="upgrade">
+    <div class="upgrade-title">✦ Upgrade any rice or noodles</div>
+    <div class="upgrade-body">Switch to <strong>Butter Garlic</strong>, <strong>Chilli Garlic</strong>, or <strong>Schezwan</strong> — add just <strong>+₹10</strong></div>
+  </div>
+</section>
+
+<!-- ═══ ROLLS ═══ -->
+<section id="rolls" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M8 8h8M8 16h5"/></svg>
+    </div>
+    <div>
+      <div class="sec-count">4 items</div>
+      <div class="sec-title">Rolls &amp; Wraps</div>
+    </div>
+  </div>
+  <div class="row"><div class="row-left"><div class="row-name">Egg Roll</div><div class="row-sub">Single / Double</div></div><div class="row-price">₹59 / ₹69</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Chicken Roll</div></div><div class="row-price">₹79</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Egg Chicken Roll</div></div><div class="row-price">₹99</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Mughlai Parota</div><div class="row-sub">Egg / Chicken</div></div><div class="row-price">₹80 / ₹100</div></div>
+</section>
+
+<!-- ═══ DUMPLINGS ═══ -->
+<section id="momos" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2a9 9 0 1 0 9 9"/><path d="M12 8v4l2 2"/></svg>
+    </div>
+    <div>
+      <div class="sec-count">5 items</div>
+      <div class="sec-title">Dumplings</div>
+    </div>
+  </div>
+  <div class="momo-grid">
+    <div class="momo-card"><div class="momo-name">Chicken Steamed Momos</div><div class="momo-price">₹50</div></div>
+    <div class="momo-card"><div class="momo-name">Fried Chicken Momos</div><div class="momo-price">₹70</div></div>
+    <div class="momo-card"><div class="momo-name">Pan-Fried Chicken Momos</div><div class="momo-price">₹80</div></div>
+    <div class="momo-card"><div class="momo-name">Chilli Fried Chicken Momos</div><div class="momo-price">₹100</div></div>
+    <div class="momo-card wide"><div class="momo-name">Butter Tossed Chicken Momos</div><div class="momo-price">₹100</div></div>
+  </div>
+</section>
+
+<!-- ═══ TANDOOR ═══ -->
+<section id="tandoor" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 22V12M12 12C12 7 8 4 4 4M12 12c0-5 4-8 8-8"/></svg>
+    </div>
+    <div>
+      <div class="sec-count">6 items</div>
+      <div class="sec-title">Tandoor Breads</div>
+    </div>
+  </div>
+  <div class="row"><div class="row-left"><div class="row-name">Plain Naan</div></div><div class="row-price">₹60</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Butter Naan</div></div><div class="row-price">₹90</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Butter Garlic Naan</div></div><div class="row-price">₹110</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Masala Kulcha</div></div><div class="row-price">₹120</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Tandoori Roti</div></div><div class="row-price">₹30</div></div>
+  <div class="row"><div class="row-left"><div class="row-name">Tandoori Butter Roti</div></div><div class="row-price">₹40</div></div>
+</section>
+
+<!-- ═══ COMBOS ═══ -->
+<section id="combos" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+    </div>
+    <div>
+      <div class="sec-count">11 combos</div>
+      <div class="sec-title">Hot Combos</div>
+    </div>
+  </div>
+
+  <!-- Hot Sellers -->
+  <div class="sub-lbl">🔥 Hot Sellers</div>
+  <div class="seller-cards">
+    <div class="seller-row">
+      <div class="seller-card">
+        <div class="seller-badge">Best Value</div>
+        <div class="seller-name">House Special</div>
+        <div class="seller-desc">Gold Coin 6pcs + Fries + Drinks</div>
+        <div class="seller-price">₹239</div>
+      </div>
+      <div class="seller-card">
+        <div class="seller-badge">Fan Fave</div>
+        <div class="seller-name">Fiery Wings</div>
+        <div class="seller-desc">Hot Wings 6pcs + Fries + Drinks</div>
+        <div class="seller-price">₹179</div>
+      </div>
+    </div>
+    <div class="seller-card full">
+      <div class="seller-badge">Must Try</div>
+      <div class="seller-name">Turf &amp; Turf</div>
+      <div class="seller-desc">Chicken Popcorn + Fries + Drinks</div>
+      <div class="seller-price">₹179</div>
+    </div>
+  </div>
+
+  <!-- All Combos -->
+  <div class="sub-lbl">All Combos</div>
+  <div class="combo-stack">
+    <div class="combo-card">
+      <div class="combo-head"><div class="combo-name">Hotboxx Classic</div><div class="combo-price">₹179</div></div>
+      <div class="combo-body">
+        <div class="combo-item"><div class="combo-dot"></div>Chicken Tikka (4 pcs)</div>
+        <div class="combo-item"><div class="combo-dot"></div>French Fries (Peri-Peri / Reg)</div>
+        <div class="combo-item"><div class="combo-dot"></div>Soft Drink</div>
+      </div>
+    </div>
+    <div class="combo-card">
+      <div class="combo-head"><div class="combo-name">Fried Feast Combo</div><div class="combo-price">₹229</div></div>
+      <div class="combo-body">
+        <div class="combo-item"><div class="combo-dot"></div>Chicken Fry (2 pcs)</div>
+        <div class="combo-item"><div class="combo-dot"></div>Chicken Pakoda (4 pcs)</div>
+        <div class="combo-item"><div class="combo-dot"></div>French Fries (Peri-Peri / Reg)</div>
+        <div class="combo-item"><div class="combo-dot"></div>Soft Drink</div>
+      </div>
+    </div>
+    <div class="combo-card">
+      <div class="combo-head"><div class="combo-name">Momo Meal Combo</div><div class="combo-price">₹129</div></div>
+      <div class="combo-body">
+        <div class="combo-item"><div class="combo-dot"></div>Fried Momo (6 pcs)</div>
+        <div class="combo-item"><div class="combo-dot"></div>French Fries (Peri-Peri / Reg)</div>
+        <div class="combo-item"><div class="combo-dot"></div>Soft Drink</div>
+      </div>
+    </div>
+    <div class="combo-card">
+      <div class="combo-head"><div class="combo-name">Rice &amp; Fire Combo</div><div class="combo-price">₹179</div></div>
+      <div class="combo-body">
+        <div class="combo-item"><div class="combo-dot"></div>Veg Fried Rice</div>
+        <div class="combo-item"><div class="combo-dot"></div>Chilli Chicken (3 pcs)</div>
+        <div class="combo-item"><div class="combo-dot"></div>Soft Drink</div>
+      </div>
+    </div>
+    <div class="combo-card">
+      <div class="combo-head"><div class="combo-name">Street Wok Combo</div><div class="combo-price">₹179</div></div>
+      <div class="combo-body">
+        <div class="combo-item"><div class="combo-dot"></div>Veg Noodles</div>
+        <div class="combo-item"><div class="combo-dot"></div>Chicken Manchurian (3 pcs)</div>
+        <div class="combo-item"><div class="combo-dot"></div>Soft Drink</div>
+      </div>
+    </div>
+    <div class="combo-card">
+      <div class="combo-head"><div class="combo-name">Roll &amp; Sip Combo</div><div class="combo-price">₹149</div></div>
+      <div class="combo-body">
+        <div class="combo-item"><div class="combo-dot"></div>1 × Chicken Roll</div>
+        <div class="combo-item"><div class="combo-dot"></div>French Fries (Peri-Peri / Reg)</div>
+        <div class="combo-item"><div class="combo-dot"></div>Soft Drink</div>
+      </div>
+    </div>
+    <div class="combo-card">
+      <div class="combo-head"><div class="combo-name">Kosha Plate Combo</div><div class="combo-price">₹129</div></div>
+      <div class="combo-body">
+        <div class="combo-item"><div class="combo-dot"></div>Veg Fried Rice</div>
+        <div class="combo-item"><div class="combo-dot"></div>Chicken Kosha (2 pcs)</div>
+        <div class="combo-item"><div class="combo-dot"></div>Soft Drink</div>
+      </div>
+    </div>
+    <div class="combo-card">
+      <div class="combo-head"><div class="combo-name">Chicken Bharta Combo</div><div class="combo-price">₹240</div></div>
+      <div class="combo-body">
+        <div class="combo-item"><div class="combo-dot"></div>1 × Naan</div>
+        <div class="combo-item"><div class="combo-dot"></div>Chicken Bharta</div>
+        <div class="combo-item"><div class="combo-dot"></div>Coke</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DRINKS ═══ -->
+<section id="drinks" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M8 2h8l1 7H7L8 2z"/><path d="M7 9c0 5 2 10 5 10s5-5 5-10"/></svg>
+    </div>
+    <div>
+      <div class="sec-count">9 items</div>
+      <div class="sec-title">Refreshments</div>
+    </div>
+  </div>
+
+  <div class="sub-lbl">Craft Sodas &amp; Mocktails</div>
+  <div class="drinks-grid">
+    <div class="drink-item"><div class="drink-name">Mango Blast Soda</div><div class="drink-price">₹99</div></div>
+    <div class="drink-item"><div class="drink-name">Lychee Twister</div><div class="drink-price">₹99</div></div>
+    <div class="drink-item"><div class="drink-name">Blueberry Burst</div><div class="drink-price">₹99</div></div>
+    <div class="drink-item"><div class="drink-name">Virgin Mojito</div><div class="drink-price">₹49</div></div>
+  </div>
+
+  <div class="sub-lbl">Hot &amp; Others</div>
+  <div class="drinks-grid">
+    <div class="drink-item"><div class="drink-name">Coffee</div><div class="drink-price">₹20</div></div>
+    <div class="drink-item"><div class="drink-name">Lemon Tea</div><div class="drink-price">₹10</div></div>
+    <div class="drink-item"><div class="drink-name">Tea</div><div class="drink-price">₹15</div></div>
+    <div class="drink-item"><div class="drink-name">Coke / Sprite</div><div class="drink-price mrp">MRP</div></div>
+    <div class="drink-item"><div class="drink-name">Packaged Water</div><div class="drink-price mrp">MRP</div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <a class="footer-call" href="tel:+918876520650">
+    <div class="footer-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.05 1.1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16z"/></svg>
+    </div>
+    <div>
+      <div class="footer-text-label">Call to order</div>
+      <div class="footer-text-num">+91 88765 20650</div>
+    </div>
+  </a>
+  <div class="footer-loc">
+    <div class="footer-loc-label">Location</div>
+    <div class="footer-loc-name">Rangirkhari Point</div>
+  </div>
+</footer>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
